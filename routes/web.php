@@ -17,3 +17,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+// Jalur Resource untuk Postingan
+Route::resource('posts', PostController::class);
