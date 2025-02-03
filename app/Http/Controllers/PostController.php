@@ -88,6 +88,43 @@ class PostController extends Controller
     // Method untuk mengupdate postingan di database
     public function update(Request $request, Post $post)
     {
+        // validasi data yang dikirim dari form
+        $this->validate($request, [
+            // gambar harus diisi dan harus berformat jpeg, png, jpg, gif, svg dengan ukuran maksimum 2048 kb
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            // judul harus diisi minimal 5 karakter
+            'title' => 'required|min:5',
+            // konten harus diisi minimal 10 karakter
+            'content' => 'required|min:10'
+        ]);
 
+        // periksa apakah gambar sudah diunggah
+        if ($request->hasFile('image')) {
+            // mengambil file gambar
+            $image = $request->file('image');
+
+            // menyimpan gambar
+            $image->storeAs('public/posts', $image->hashName());
+
+            // hapus gambar lama
+            Storage::delete('public/posts/'.$post->image);
+
+            // update post
+            $post->update([
+                'image'     => $image->hashName(),
+                'title'     => $request->title,
+                'content'   => $request->content
+            ]);
+
+        } else {
+            // update post tanpa image
+            $post->update([
+                'title'     => $request->title,
+                'content'   => $request->content
+            ]);
+        }
+
+        // mengalihkan ke halaman posts dengan mengirimkan pesan sukses
+        return redirect()->route('posts.index')->with(['success' => 'Data Berhasil Disimpan!']);
     }
 }
