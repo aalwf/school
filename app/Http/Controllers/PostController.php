@@ -84,4 +84,10 @@ class PostController extends Controller
         // menampilkan halaman dan mengirimkan data
         return view('pages.edit', $data);
     }
+
+    // Method untuk mengupdate postingan di database
+    public function update(Request $request, Post $post)
+    {
+
+    }
 }
