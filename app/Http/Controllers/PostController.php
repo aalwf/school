@@ -115,7 +115,6 @@ class PostController extends Controller
                 'title'     => $request->title,
                 'content'   => $request->content
             ]);
-
         } else {
             // update post tanpa image
             $post->update([
@@ -126,5 +125,18 @@ class PostController extends Controller
 
         // mengalihkan ke halaman posts dengan mengirimkan pesan sukses
         return redirect()->route('posts.index')->with(['success' => 'Data Berhasil Disimpan!']);
+    }
+
+    // create method untuk menghapus postingan
+    public function destroy(Post $post)
+    {
+        // delete image
+        Storage::delete('public/posts/'. $post->image);
+
+        // delete post
+        $post->delete();
+
+        // redirect to index
+        return redirect()->route('posts.index')->with(['success' => 'Data Berhasil Dihapus!']);
     }
 }
