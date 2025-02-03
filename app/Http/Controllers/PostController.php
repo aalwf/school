@@ -82,4 +82,16 @@ class PostController extends Controller
         // Menampilkan halaman detail postingan
         return view('pages.detail', $data);
     }
+
+    public function edit(string $id): View
+    {
+        // Membuat variabel data untuk dikirim ke halaman
+        $data = [
+            'title' => 'Edit Post',
+            'post' => Post::findOrFail($id)
+        ];
+
+        // Menampilkan halaman edit postingan
+        return view('pages.edit', $data);
+    }
 }
