@@ -21,9 +21,7 @@
     <div class="container mt-5"> {{-- class container diambil dari bootstrap dan class mt-5 untuk margin-top --}}
         <div class="row"> {{-- membuat baris --}}
             <div class="col-md-12"> {{-- membuat 12 kolom dengan ukuran md --}}
-                <div class="card border-0 shadow rounded"> {{-- membuat card tanpa border, menambahkan shadow dan rounded --}}
-                    @yield('content') {{-- menampilkan konten --}}
-                </div>
+                @yield('content') {{-- menampilkan konten --}}
             </div>
         </div>
     </div>

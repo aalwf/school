@@ -15,6 +15,6 @@ class PostController extends Controller
         $posts = Post::latest()->paginate(5);
 
         // Menampilkan halaman postingan
-        return view('posts.index', compact('posts'));
+        return view('pages.index', compact('posts'));
     }
 }
