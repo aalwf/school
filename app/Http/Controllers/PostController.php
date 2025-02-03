@@ -68,4 +68,17 @@ class PostController extends Controller
         // mengalihkan ke halaman posts dengan mengirimkan pesan sukses
         return redirect()->route('posts.index')->with(['success' => 'Data Berhasil Disimpan!']);
     }
+
+    // Method untuk menampilkan detail postingan
+    public function show(string $id): View
+    {
+        // Membuat variabel data untuk dikirim ke halaman
+        $data = [
+            'title' => 'Detail Post',
+            'post' => Post::findOrFail($id)
+        ];
+
+        // Menampilkan halaman detail postingan
+        return view('pages.detail', $data);
+    }
 }
