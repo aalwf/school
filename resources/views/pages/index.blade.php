@@ -62,16 +62,28 @@
             </table>
 
             {{-- menampilkan link pagination --}}
-            {{ $posts->links() }}
+            {{ $products->links() }}
         </div>
     </div>
 
     <script>
-        // menampilkan pesan toastr dari session
-        @if (session()->has('success'))
-            toastr.success('{{ session('success') }}', 'BERHASIL!');
-        @elseif (session()->has('error'))
-            toastr.error('{{ session('error') }}', 'GAGAL!');
+        // Menjalankan SweetAlert
+        @if (session('success'))
+            Swal.fire({
+                icon: "success",
+                title: "BERHASIL",
+                text: "{{ session('success') }}",
+                showConfirmButton: false,
+                timer: 2000
+            });
+        @elseif (session('error'))
+            Swal.fire({
+                icon: "error",
+                title: "GAGAL!",
+                text: "{{ session('error') }}",
+                showConfirmButton: false,
+                timer: 2000
+            });
         @endif
     </script>
 @endsection

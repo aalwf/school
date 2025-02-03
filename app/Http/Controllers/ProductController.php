@@ -14,7 +14,7 @@ class ProductController extends Controller
         // Membuat variabel data untuk dikirim ke halaman
         $data = [
             'title' => 'Products',
-            'products' => Product::all()
+            'products' => Product::latest()->paginate(10)
         ];
 
         // Menampilkan halaman postingan
