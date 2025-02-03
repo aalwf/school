@@ -83,6 +83,7 @@ class PostController extends Controller
         return view('pages.detail', $data);
     }
 
+    // Method untuk menampilkan halaman edit postingan
     public function edit(string $id): View
     {
         // Membuat variabel data untuk dikirim ke halaman
@@ -93,5 +94,49 @@ class PostController extends Controller
 
         // Menampilkan halaman edit postingan
         return view('pages.edit', $data);
+    }
+
+    // Method untuk mengupdate postingan
+    public function update(Request $request, string $id): RedirectResponse
+    {
+        // validasi data yang dikirim dari form
+        $this->validate($request, [
+            // gambar harus diisi dan harus berformat jpeg, png, jpg, gif, svg dengan ukuran maksimum 2048 kb
+            'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            // judul harus diisi minimal 5 karakter
+            'title' => 'required|min:5',
+            // konten harus diisi minimal 10 karakter
+            'content' => 'required|min:10'
+        ]);
+
+        // mengambil file gambar dari form yang dikirim
+        $image = $request->file('image');
+
+        // menambahkan data ke database
+        $post = Post::findOrFail($id);
+        $post->update([
+            // memasukkan judul
+            'title' => $request->title,
+            // memasukkan konten
+            'content' => $request->content
+        ]);
+
+        // menghapus gambar lama
+        if ($request->file('image') != "") {
+            Storage::delete('public/posts/' . basename($post->image));
+        }
+
+        // menyimpan gambar baru
+        if ($image != null) {
+            // menggunakan method storeAs untuk menyimpan gambar ke folder posts
+            $image->storeAs('public/posts', $image->hashName());
+            $post->update([
+                // memasukkan hashname dari gambar ke database
+                'image' => $image->hashName(),
+            ]);
+        }
+
+        // mengalihkan ke halaman posts dengan mengirimkan pesan sukses
+        return redirect()->route('posts.index')->with(['success' => 'Data Berhasil Diupdate!']);
     }
 }
