@@ -11,9 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
+        // create products table
         Schema::create('products', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+            $table->id(); // ID unik untuk setiap produk
+            $table->string('image'); // URL gambar
+            $table->string('title'); // Nama produk
+            $table->text('description'); // Deskripsi produk
+            $table->bigInteger('price'); // Harga produk
+            $table->integer('stock')->default(0); // Stok
+            $table->timestamps(); // Kolom untuk menyimpan waktu pembuatan dan pembaruan
         });
     }
 
