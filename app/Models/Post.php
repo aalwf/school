@@ -8,4 +8,15 @@ use Illuminate\Database\Eloquent\Model;
 class Post extends Model
 {
     use HasFactory;
+
+    /**
+     * fillable attributes that can be mass assigned
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'image',
+        'title',
+        'content',
+    ];
 }
