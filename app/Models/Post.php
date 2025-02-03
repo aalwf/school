@@ -10,7 +10,7 @@ class Post extends Model
     use HasFactory;
 
     /**
-     * fillable attributes that can be mass assigned
+     * Field yang dapat diisi secara massal
      *
      * @var array
      */

@@ -8,16 +8,16 @@ use App\Models\Post;
 class PostController extends Controller
 {
     /**
-     * Method to get all posts
+     * Method untuk menampilkan halaman Postingan
      *
      * @return void
      */
     public function index()
     {
-        // Get all posts from the Post model and limit the data displayed to 5 on each page
+        // Mengambil semua data postingan dengan mengurutkan postingan terbaru & melimit 5 data per halaman
         $posts = Post::latest()->paginate(5);
 
-        // Render view with posts data
+        // Menampilkan halaman postingan
         return view('posts.index', compact('posts'));
     }
 }

@@ -13,12 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
+        // Membuat tabel "posts"
         Schema::create('posts', function (Blueprint $table) {
-            $table->id();
-            $table->string('image');
-            $table->string('title');
-            $table->text('content');
-            $table->timestamps();
+            $table->id(); // ID unik untuk setiap postingan
+            $table->string('image'); // Kolom untuk menyimpan URL gambar
+            $table->string('title'); // Kolom untuk menyimpan judul
+            $table->text('content'); // Kolom untuk menyimpan konten
+            $table->timestamps(); // Kolom untuk menyimpan waktu pembuatan dan pembaruan
           });
     }
 
@@ -29,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('posts');
+        Schema::dropIfExists('posts'); // Menghapus tabel "posts" pada sebuah rollback migrations
     }
 };
