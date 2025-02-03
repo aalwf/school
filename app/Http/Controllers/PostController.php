@@ -31,4 +31,10 @@ class PostController extends Controller
     {
         return view('posts.create');
     }
+
+    // Method untuk menambahkan postingan ke database
+    public function store(Request $request)
+    {
+        //
+    }
 }
