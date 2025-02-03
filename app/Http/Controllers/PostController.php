@@ -25,4 +25,10 @@ class PostController extends Controller
         // Menampilkan halaman postingan
         return view('pages.index', $data);
     }
+
+    // Method untuk menampilkan halaman tambah postingan
+    public function create()
+    {
+        return view('posts.create');
+    }
 }
