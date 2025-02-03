@@ -22,4 +22,16 @@ class PostController extends Controller
         // Menampilkan halaman postingan
         return view('pages.index', $data);
     }
+
+    // Method untuk menampilkan halaman tambah postingan
+    public function create()
+    {
+        // Membuat variabel data untuk dikirim ke halaman
+        $data = [
+            'title' => 'Tambah Post'
+        ];
+
+        // Menampilkan halaman tambah postingan
+        return view('pages.create', $data);
+    }
 }
