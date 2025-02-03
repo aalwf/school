@@ -18,6 +18,6 @@ class ProductController extends Controller
         ];
 
         // Menampilkan halaman postingan
-        return view('pages.index', compact('products'));
+        return view('pages.index', $data);
     }
 }
