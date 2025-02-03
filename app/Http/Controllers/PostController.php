@@ -44,5 +44,14 @@ class PostController extends Controller
             // konten harus diisi minimal 10 karakter
             'content' => 'required|min:10'
         ]);
+
+        // mengambil file gambar dari form yang dikirim
+        $image = $request->file('image');
+
+        // menggunakan method storeAs untuk menyimpan gambar ke folder posts
+        $image->storeAs('public/posts', $image->hashName());
+
+        // mengalihkan ke halaman posts dengan mengirimkan pesan sukses
+        return redirect()->route('posts.index')->with(['success' => 'Data Berhasil Disimpan!']);
     }
 }
