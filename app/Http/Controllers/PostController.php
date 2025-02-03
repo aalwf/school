@@ -16,5 +16,8 @@ class PostController extends Controller
     {
         // Get all posts from the Post model and limit the data displayed to 5 on each page
         $posts = Post::latest()->paginate(5);
+
+        // Render view with posts data
+        return view('posts.index', compact('posts'));
     }
 }
