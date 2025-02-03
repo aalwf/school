@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\RedirectResponse; // RedirectResponse dari Laravel
 use Illuminate\Http\Request;
 use Illuminate\View\View; // View dari Laravel
 use App\Models\Product; // Model Product
