@@ -3,27 +3,21 @@
 @section('content')
     <div class="card-body"> {{-- membuat card body --}}
         {{-- form untuk tambah post --}}
-        <form action="{{ route('posts.store') }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('posts.update', $post->id) }}" method="POST" enctype="multipart/form-data">
             @csrf {{-- token csrf --}}
+            @method('PUT') {{-- mengubah method ke put --}}
 
             {{-- field untuk gambar --}}
             <div class="form-group">
                 <label class="font-weight-bold">Image</label>
-                <input type="file" class="form-control @error('image') is-invalid @enderror" name="image">
-
-                <!-- error message untuk title -->
-                @error('image')
-                    <div class="alert alert-danger mt-2">
-                        {{ $message }}
-                    </div>
-                @enderror
+                <input type="file" class="form-control" name="image">
             </div>
 
             {{-- field untuk judul --}}
             <div class="form-group">
                 <label class="font-weight-bold">Title</label>
                 <input type="text" class="form-control @error('title') is-invalid @enderror" name="title"
-                    value="{{ old('title') }}" placeholder="Masukkan Judul Post">
+                    value="{{ old('title', $post->title) }}" placeholder="Masukkan Judul Post">
 
                 <!-- error message untuk title -->
                 @error('title')
@@ -37,7 +31,7 @@
             <div class="form-group">
                 <label class="font-weight-bold">Content</label>
                 <textarea class="form-control @error('content') is-invalid @enderror" name="content" rows="5"
-                    placeholder="Masukkan Konten Post">{{ old('content') }}</textarea>
+                    placeholder="Masukkan Konten Post">{{ old('content', $post->content) }}</textarea>
 
                 <!-- error message untuk content -->
                 @error('content')
@@ -48,7 +42,7 @@
             </div>
 
             {{-- tombol simpan --}}
-            <button type="submit" class="btn btn-md btn-primary">Save</button>
+            <button type="submit" class="btn btn-md btn-primary">UPDATE</button>
 
             {{-- tombol reset --}}
             <button type="reset" class="btn btn-md btn-warning">RESET</button>
