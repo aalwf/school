@@ -54,4 +54,9 @@
             <button type="reset" class="btn btn-md btn-warning">RESET</button>
         </form>
     </div>
+
+    {{-- script untuk ckeditor --}}
+    <script>
+        CKEDITOR.replace('content');
+    </script>
 @endsection

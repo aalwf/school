@@ -38,6 +38,9 @@
     {{-- Import toastr JS CDN --}}
     <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
+    {{-- Import ckeditor JS CDN --}}
+    <script src="https://cdn.ckeditor.com/4.13.1/standard/ckeditor.js"></script>
+
 </body>
 
 </html>
