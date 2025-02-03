@@ -11,8 +11,6 @@ class PostController extends Controller
     // Method untuk menampilkan postingan
     public function index()
     {
-        // Mengambil semua data postingan dengan mengurutkan postingan terbaru & melimit 5 data per halaman
-        $posts = Post::latest()->paginate(5);
         // Membuat variabel data untuk dikirim ke halaman
         $data = [
             // Judul halaman untuk di tampilkan di layout
@@ -22,7 +20,6 @@ class PostController extends Controller
         ];
 
         // Menampilkan halaman postingan
-        return view('pages.index', compact('posts'));
         return view('pages.index', $data);
     }
 }
