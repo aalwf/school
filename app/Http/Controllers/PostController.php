@@ -35,4 +35,37 @@ class PostController extends Controller
         // Menampilkan halaman tambah postingan
         return view('pages.create', $data);
     }
+
+    // Method untuk menyimpan postingan baru ke database
+    public function store(Request $request): RedirectResponse
+    {
+        // validasi data yang dikirim dari form
+        $this->validate($request, [
+            // gambar harus diisi dan harus berformat jpeg, png, jpg, gif, svg dengan ukuran maksimum 2048 kb
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            // judul harus diisi minimal 5 karakter
+            'title' => 'required|min:5',
+            // konten harus diisi minimal 10 karakter
+            'content' => 'required|min:10'
+        ]);
+
+        // mengambil file gambar dari form yang dikirim
+        $image = $request->file('image');
+
+        // menggunakan method storeAs untuk menyimpan gambar ke folder posts
+        $image->storeAs('public/posts', $image->hashName());
+
+        // menambahkan data ke database
+        Post::create([
+            // memasukkan hashname dari gambar ke database
+            'image' => $image->hashName(),
+            // memasukkan judul
+            'title' => $request->title,
+            // memasukkan konten
+            'content' => $request->content
+        ]);
+
+        // mengalihkan ke halaman posts dengan mengirimkan pesan sukses
+        return redirect()->route('posts.index')->with(['success' => 'Data Berhasil Disimpan!']);
+    }
 }
