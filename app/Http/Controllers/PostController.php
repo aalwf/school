@@ -72,6 +72,12 @@ class PostController extends Controller
     // Method untuk menampilkan halaman edit postingan
     public function edit(Post $post)
     {
-        //
+        // menyiapkan data untuk dikirim ke halaman
+        $data = [
+            // judul halaman
+            'title' => 'Edit Post',
+            // data postingan yang akan diedit
+            'post' => $post
+        ];
     }
 }
