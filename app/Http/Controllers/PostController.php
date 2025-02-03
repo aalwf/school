@@ -68,4 +68,10 @@ class PostController extends Controller
         // mengalihkan ke halaman posts dengan mengirimkan pesan sukses
         return redirect()->route('posts.index')->with(['success' => 'Data Berhasil Disimpan!']);
     }
+
+    // Method untuk menampilkan halaman edit postingan
+    public function edit(Post $post)
+    {
+        //
+    }
 }
