@@ -21,4 +21,16 @@ class ProductController extends Controller
         // Menampilkan halaman postingan
         return view('pages.index', $data);
     }
+
+    // Method untuk menampilkan halaman tambah produk
+    public function create(): View
+    {
+        // Membuat variabel data untuk dikirim ke halaman
+        $data = [
+            'title' => 'Create Product'
+        ];
+
+        // Menampilkan halaman postingan
+        return view('pages.create', $data);
+    }
 }
