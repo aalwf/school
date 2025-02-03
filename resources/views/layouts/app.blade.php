@@ -30,6 +30,9 @@
     {{-- SweetAlert CDN --}}
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+    {{-- CKEditor CDN --}}
+    <script src="https://cdn.ckeditor.com/4.13.1/standard/ckeditor.js"></script>
+
 </body>
 
 </html>
