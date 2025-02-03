@@ -79,5 +79,8 @@ class PostController extends Controller
             // data postingan yang akan diedit
             'post' => $post
         ];
+
+        // menampilkan halaman dan mengirimkan data
+        return view('pages.edit', $data);
     }
 }
