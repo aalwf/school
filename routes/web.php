@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PostController; // Import PostController
 use Illuminate\Support\Facades\Route;
 
 /*
