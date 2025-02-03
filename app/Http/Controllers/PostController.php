@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Post;
+use App\Models\Post; // import model Post
 
 class PostController extends Controller
 {
@@ -54,6 +54,16 @@ class PostController extends Controller
 
         // menggunakan method storeAs untuk menyimpan gambar ke folder posts
         $image->storeAs('public/posts', $image->hashName());
+
+        // menambahkan data ke database
+        Post::create([
+            // memasukkan hashname dari gambar ke database
+            'image' => $image->hashName(),
+            // memasukkan judul
+            'title' => $request->title,
+            // memasukkan konten
+            'content' => $request->content
+        ]);
 
         // mengalihkan ke halaman posts dengan mengirimkan pesan sukses
         return redirect()->route('posts.index')->with(['success' => 'Data Berhasil Disimpan!']);
