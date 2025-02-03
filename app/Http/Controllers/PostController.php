@@ -35,6 +35,14 @@ class PostController extends Controller
     // Method untuk menambahkan postingan ke database
     public function store(Request $request)
     {
-        //
+        // validasi data yang dikirim dari form
+        $this->validate($request, [
+            // gambar harus diisi dan harus berformat jpeg, png, jpg, gif, svg dengan ukuran maksimum 2048 kb
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            // judul harus diisi minimal 5 karakter
+            'title' => 'required|min:5',
+            // konten harus diisi minimal 10 karakter
+            'content' => 'required|min:10'
+        ]);
     }
 }
