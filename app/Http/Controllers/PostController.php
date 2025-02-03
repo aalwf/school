@@ -29,7 +29,11 @@ class PostController extends Controller
     // Method untuk menampilkan halaman tambah postingan
     public function create()
     {
-        return view('posts.create');
+        $data = [
+            'title' => 'Tambah Post'
+        ];
+
+        return view('pages.create', $data);
     }
 
     // Method untuk menambahkan postingan ke database
