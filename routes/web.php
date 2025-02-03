@@ -17,3 +17,6 @@ use App\Http\Controllers\PostController; // Import controller
 Route::get('/', function () {
     return view('welcome');
 });
+
+// Jalur Resource untuk Postingan
+Route::resource('posts', PostController::class);
