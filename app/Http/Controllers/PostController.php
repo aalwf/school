@@ -139,4 +139,20 @@ class PostController extends Controller
         // mengalihkan ke halaman posts dengan mengirimkan pesan sukses
         return redirect()->route('posts.index')->with(['success' => 'Data Berhasil Diupdate!']);
     }
+
+    // Method untuk menghapus postingan
+    public function destroy($id): RedirectResponse
+    {
+        // mengambil data postingan
+        $post = Post::findOrFail($id);
+
+        // menghapus gambar
+        Storage::delete('public/posts/' . $post->image);
+
+        // menghapus data postingan
+        $post->delete();
+
+        // mengalihkan ke halaman posts dengan mengirimkan pesan sukses
+        return redirect()->route('posts.index')->with(['success' => 'Data Berhasil Dihapus!']);
+    }
 }
