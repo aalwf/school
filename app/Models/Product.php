@@ -9,4 +9,13 @@ class Product extends Model
 {
     // Menggunakan HasFactory
     use HasFactory;
+
+    // Field yang dapat diisi secara massal
+    protected $fillable = [
+        'image',
+        'title',
+        'description',
+        'price',
+        'stock',
+    ];
 }
