@@ -140,4 +140,20 @@ class ProductController extends Controller
         // mengalihkan ke halaman posts dengan mengirimkan pesan sukses
         return redirect()->route('products.index')->with(['success' => 'Data Berhasil Diupdate!']);
     }
+
+    // Method untuk menghapus product
+    public function destroy($id): RedirectResponse
+    {
+        // mengambil data product berdasarkan id
+        $product = Product::findOrFail($id);
+
+        // hapus file gambar
+        Storage::delete('public/products/' . $product->image);
+
+        // hapus data product
+        $product->delete();
+
+        // mengalihkan ke halaman posts dengan mengirimkan pesan sukses
+        return redirect()->route('products.index')->with(['success' => 'Data Berhasil Dihapus!']);
+    }
 }
