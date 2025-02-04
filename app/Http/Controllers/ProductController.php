@@ -65,4 +65,17 @@ class ProductController extends Controller
         // mengalihkan ke halaman posts dengan mengirimkan pesan sukses
         return redirect()->route('products.index')->with(['success' => 'Data Berhasil Disimpan!']);
     }
+
+    // Method untuk menampilkan detail product berdasarkan id
+    public function show(string $id): View
+    {
+        // menyiapkan data untuk dikirim ke halaman
+        $data = [
+            'title' => 'Product Detail',
+            'product' => Product::findOrFail($id)
+        ];
+
+        //render view with product
+        return view('pages.detail', $data);
+    }
 }
