@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Validator; // import validator dari laravel
 use App\Http\Resources\PostResource; // import resource Post
 use App\Models\Post; // import model Post
 
