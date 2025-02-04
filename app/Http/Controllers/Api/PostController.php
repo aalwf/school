@@ -62,4 +62,50 @@ class PostController extends Controller
         // mengembalikan data Post dalam bentuk Resource
         return new PostResource(true, 'Detail Data Post!', $post);
     }
+
+    // Method untuk mengupdate data Post
+    public function update(Request $request, $id)
+    {
+        // validasi data request dari client
+        $validator = Validator::make($request->all(), [
+            'title'     => 'required',
+            'content'   => 'required',
+        ]);
+
+        // return error dengan status 422 jika validasi gagal
+        if ($validator->fails()) {
+            return response()->json($validator->errors(), 422);
+        }
+
+        // ambil data post berdasarkan id
+        $post = Post::find($id);
+
+        // mengecek apakah request memiliki file gambar
+        if ($request->hasFile('image')) {
+            // ambil image dari request
+            $image = $request->file('image');
+
+            // upload image ke storage
+            $image->storeAs('public/posts', $image->hashName());
+
+            // hapus image lama
+            Storage::delete('public/posts/' . basename($post->image));
+
+            // update post
+            $post->update([
+                'image'     => $image->hashName(),
+                'title'     => $request->title,
+                'content'   => $request->content,
+            ]);
+        } else {
+            // update post tanpa mengubah image
+            $post->update([
+                'title'     => $request->title,
+                'content'   => $request->content,
+            ]);
+        }
+
+        // mengembalikan data Post yang diubah dalam bentuk Resource
+        return new PostResource(true, 'Data Post Berhasil Diubah!', $post);
+    }
 }
