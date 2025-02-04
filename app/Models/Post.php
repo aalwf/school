@@ -13,4 +13,13 @@ class Post extends Model
         'title',
         'content',
     ];
+
+    // Accessor untuk attribute image
+    protected function image(): Attribute
+    {
+        // Mengembalikan URL gambar
+        return Attribute::make(
+            get: fn($image) => url('/storage/posts/' . $image),
+        );
+    }
 }
