@@ -11,9 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
+        // membuat tabel posts
         Schema::create('posts', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+            $table->id(); // primary key untuk setiap postingan
+            $table->string('image'); // field untuk menyimpan gambar
+            $table->string('title'); // field untuk menyimpan judul dari postingan
+            $table->text('content'); // field untuk menyimpan konten dari postingan
+            $table->timestamps(); // field untuk menyimpan waktu pembuatan dan pembaruan postingan
         });
     }
 
