@@ -78,4 +78,17 @@ class ProductController extends Controller
         //render view with product
         return view('pages.detail', $data);
     }
+
+    // Method untuk menampilkan halaman edit product berdasarkan id
+    public function edit(string $id): View
+    {
+        // menyiapkan data untuk dikirim ke halaman
+        $data = [
+            'title' => 'Edit Product',
+            'product' => Product::findOrFail($id)
+        ];
+
+        // menampilkan halaman edit product
+        return view('pages.edit', $data);
+    }
 }
