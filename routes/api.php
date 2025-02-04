@@ -18,3 +18,6 @@ use App\Http\Controllers\Api\PostController; // import controller Post
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+// Route Resource untuk Post
+Route::apiResource('posts', PostController::class);
