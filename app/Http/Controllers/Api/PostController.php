@@ -16,6 +16,7 @@ class PostController extends Controller
     {
         // Mengambil semua data Post
         $posts = Post::latest()->paginate(5);
+
         // Mengembalikan data Post dalam bentuk Resource
         return new PostResource(true, 'List Data Posts', $posts);
     }
@@ -29,20 +30,25 @@ class PostController extends Controller
             'title'     => 'required',
             'content'   => 'required',
         ]);
+
         // return error dengan status 422 jika validasi gagal
         if ($validator->fails()) {
             return response()->json($validator->errors(), 422);
         }
+
         // ambil file gambar dari request
         $image = $request->file('image');
+
         // upload image ke storage
         $image->storeAs('public/posts', $image->hashName());
+
         // buat postingan baru
         $post = Post::create([
             'image'     => $image->hashName(),
             'title'     => $request->title,
             'content'   => $request->content,
         ]);
+
         // mengembalikan data Post yang dibuat dalam bentuk Resource
         return new PostResource(true, 'Data Post Berhasil Ditambahkan!', $post);
     }
@@ -52,6 +58,7 @@ class PostController extends Controller
     {
         // mengambil data post berdasarkan id
         $post = Post::find($id);
+
         // mengembalikan data Post dalam bentuk Resource
         return new PostResource(true, 'Detail Data Post!', $post);
     }
@@ -64,20 +71,26 @@ class PostController extends Controller
             'title'     => 'required',
             'content'   => 'required',
         ]);
+
         // return error dengan status 422 jika validasi gagal
         if ($validator->fails()) {
             return response()->json($validator->errors(), 422);
         }
+
         // ambil data post berdasarkan id
         $post = Post::find($id);
+
         // mengecek apakah request memiliki file gambar
         if ($request->hasFile('image')) {
             // ambil image dari request
             $image = $request->file('image');
+
             // upload image ke storage
             $image->storeAs('public/posts', $image->hashName());
+
             // hapus image lama
             Storage::delete('public/posts/' . basename($post->image));
+
             // update post
             $post->update([
                 'image'     => $image->hashName(),
@@ -91,6 +104,7 @@ class PostController extends Controller
                 'content'   => $request->content,
             ]);
         }
+
         // mengembalikan data Post yang diubah dalam bentuk Resource
         return new PostResource(true, 'Data Post Berhasil Diubah!', $post);
     }
