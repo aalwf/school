@@ -2,35 +2,34 @@
 import { Routes, Route } from "react-router-dom";
 
 //import view homepage
-import Home from '../views/home.jsx';
+import Home from "../views/home.jsx";
 
 //import view posts index
-import PostIndex from '../views/posts/index.jsx';
+import PostIndex from "../views/posts/index.jsx";
 
 //import view post create
-import PostCreate from '../views/posts/create.jsx';
+import PostCreate from "../views/posts/create.jsx";
 
 //import view post edit
-import PostEdit from '../views/posts/edit.jsx';
+import PostEdit from "../views/posts/edit.jsx";
 
+// Mendefiniskan Route
 function RoutesIndex() {
     return (
         <Routes>
-
-            {/* route "/" */}
+            {/* Home view */}
             <Route path="/" element={<Home />} />
 
-            {/* route "/posts" */}
+            {/* Posts view */}
             <Route path="/posts" element={<PostIndex />} />
 
-            {/* route "/posts/create" */}
+            {/* Post Create view */}
             <Route path="/posts/create" element={<PostCreate />} />
 
-            {/* route "/posts/edit/:id" */}
+            {/* Post Edit view */}
             <Route path="/posts/edit/:id" element={<PostEdit />} />
-
         </Routes>
-    )
+    );
 }
 
-export default RoutesIndex
+export default RoutesIndex;
