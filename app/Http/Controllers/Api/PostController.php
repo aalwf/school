@@ -51,4 +51,14 @@ class PostController extends Controller
         // mengembalikan data Post yang dibuat dalam bentuk Resource
         return new PostResource(true, 'Data Post Berhasil Ditambahkan!', $post);
     }
+
+    // Method untuk menampilkan detail data Post
+    public function show($id)
+    {
+        // mengambil data post berdasarkan id
+        $post = Post::find($id);
+
+        // mengembalikan data Post dalam bentuk Resource
+        return new PostResource(true, 'Detail Data Post!', $post);
+    }
 }
