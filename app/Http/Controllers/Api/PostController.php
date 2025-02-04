@@ -18,4 +18,31 @@ class PostController extends Controller
         // Mengembalikan data Post dalam bentuk Resource
         return new PostResource(true, 'List Data Posts', $posts);
     }
+
+    // Method untuk menambahkan data Post
+    public function store(Request $request)
+    {
+        // validasi data request dari client
+        $validator = Validator::make($request->all(), [
+            'image'     => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'title'     => 'required',
+            'content'   => 'required',
+        ]);
+        // return error dengan status 422 jika validasi gagal
+        if ($validator->fails()) {
+            return response()->json($validator->errors(), 422);
+        }
+        // ambil file gambar dari request
+        $image = $request->file('image');
+        // upload image ke storage
+        $image->storeAs('public/posts', $image->hashName());
+        // buat postingan baru
+        $post = Post::create([
+            'image'     => $image->hashName(),
+            'title'     => $request->title,
+            'content'   => $request->content,
+        ]);
+        // mengembalikan data Post yang dibuat dalam bentuk Resource
+        return new PostResource(true, 'Data Post Berhasil Ditambahkan!', $post);
+    }
 }
