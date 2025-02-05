@@ -1,5 +1,5 @@
 // Komponen TodoItem
-const TodoItem = ({ todo }) => {
+const TodoItem = ({ todo, setRefresh }) => {
     // Fungsi untuk mengubah status todo
     const updateTodo = () => {
         todo.done = !todo.done;
