@@ -3,12 +3,12 @@ import { useState } from "react"; // import useState
 // Komponen Header
 const Header = ({ setRefresh }) => {
     // State untuk input
-    const [input, setInput] = useState("");
+    const [title, setTitle] = useState("");
 
     // Fungsi untuk menambahkan todo
     const addTodo = () => {
         // Menyiapkan data baru
-        const newTodo = { input, done: false };
+        const newTodo = { title, done: false };
 
         // Memanggil API untuk menambahkan todo
         fetch("http://localhost:8000/todos", {
@@ -19,7 +19,7 @@ const Header = ({ setRefresh }) => {
             body: JSON.stringify(newTodo),
         }).then(() => {
             // ketika sukses menambah data, reset form dengan mengeset state title menjadi empty string
-            setInput("");
+            setTitle("");
             setRefresh(true); // mengubah state isRefresh yang ada di App.js menjadi true
 
             // Tampilkan alert pada saat sukses
@@ -35,8 +35,8 @@ const Header = ({ setRefresh }) => {
             <h2>Simple Todo App</h2>
             <input
                 type="text"
-                value={input}
-                onChange={(e) => setInput(e.target.value)}
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
             />
             <span className="add-button" onClick={addTodo}>
                 Add
