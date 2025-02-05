@@ -9,7 +9,11 @@ const Header = () => {
     return (
         <div id="todo-header" className="header">
             <h2>Simple Todo App</h2>
-            <input type="text" value={""} onChange={""} />
+            <input
+                type="text"
+                value={input}
+                onChange={(e) => setInput(e.target.value)}
+            />
             <span className="add-button" onClick={""}>
                 Add
             </span>
