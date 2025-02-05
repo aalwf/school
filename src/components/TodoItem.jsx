@@ -1,8 +1,9 @@
 // Komponen TodoItem
-const TodoItem = () => {
+const TodoItem = ({ todo }) => {
     return (
-        <li>
-            Hit the gym <span class="close">x</span>
+        // Menampilkan todo dari props yang dikirim oleh komponen TodoList
+        <li className={`${todo.done ? "checked" : ""}`}>
+            {todo.title} <span className="close">x</span>
         </li>
     );
 };
