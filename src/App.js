@@ -1,14 +1,25 @@
 // Import Komponen
+import { useState } from "react";
 import Header from "./components/Header";
 import TodoList from "./components/TodoList";
 
 function App() {
-    <div className="App">
-        <div className="content">
-            <Header /> {/* Memanggil komponen Header */}
-            <TodoList /> {/* Memanggil komponen TodoList */}
+    const [isRefresh, setIsRefresh] = useState(true);
+
+    const setRefresh = (status) => {
+        setIsRefresh(status);
+    };
+
+    return (
+        <div className="App">
+            <div className="content">
+                {/* Memanggil komponen Header */}
+                <Header setRefresh={setRefresh} />{" "}
+                {/* Memanggil komponen TodoList */}
+                <TodoList setRefresh={setRefresh} isRefresh={isRefresh} />{" "}
+            </div>
         </div>
-    </div>;
+    );
 }
 
 export default App;
