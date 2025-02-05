@@ -27,10 +27,10 @@ const TodoList = () => {
 
     return (
         <ul id="todo-list">
-            {/* Memanggil komponen TodoItem */}
-            <TodoItem />
-            <TodoItem />
-            <TodoItem />
+            {/* Memanggil komponen TodoItem untuk setiap todo yang didapatkan dari API */}
+            {todos.map((todo) => (
+                <TodoItem todo={todo} key={todo.id} />
+            ))}
         </ul>
     );
 };
