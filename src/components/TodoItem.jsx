@@ -16,6 +16,16 @@ const TodoItem = ({ todo, setRefresh }) => {
         });
     };
 
+    // Fungsi untuk menghapus todo
+    const deleteTodo = () => {
+        fetch("http://localhost:8000/todos/" + todo.id, {
+            method: "DELETE",
+        }).then(() => {
+            console.log("todo deleted.");
+            setRefresh(true);
+        });
+    };
+
     return (
         // Menampilkan todo dari props yang dikirim oleh komponen TodoList
         <li className={`${todo.done ? "checked" : ""}`}>
