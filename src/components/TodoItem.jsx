@@ -30,7 +30,9 @@ const TodoItem = ({ todo, setRefresh }) => {
         // Menampilkan todo dari props yang dikirim oleh komponen TodoList
         <li className={`${todo.done ? "checked" : ""}`}>
             <div onClick={updateTodo}>{todo.title}</div>
-            <span className="close">x</span>
+            <span className="close" onClick={deleteTodo}>
+                x
+            </span>
         </li>
     );
 };
