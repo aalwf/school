@@ -38,7 +38,7 @@ const TodoList = ({ isRefresh, setRefresh }) => {
         <ul id="todo-list">
             {/* Memanggil komponen TodoItem untuk setiap todo yang didapatkan dari API */}
             {todos.map((todo) => (
-                <TodoItem todo={todo} key={todo.id} />
+                <TodoItem todo={todo} key={todo.id} setRefresh={setRefresh} />
             ))}
         </ul>
     );
