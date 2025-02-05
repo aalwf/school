@@ -6,43 +6,51 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Spatie\Permission\Traits\HasRoles; // import trait dari Spatie
 
 class User extends Authenticatable
 {
-    /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasFactory, Notifiable;
+    // Menggunakan HasRoles untuk menggunakan fitur Spatie
+    use HasFactory, Notifiable, HasRoles;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var list<string>
-     */
+    // Field yang boleh diisi
     protected $fillable = [
         'name',
         'email',
         'password',
     ];
 
-    /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var list<string>
-     */
+    // Field yang tidak boleh diperlihatkan
     protected $hidden = [
         'password',
         'remember_token',
     ];
 
     /**
-     * Get the attributes that should be cast.
+     * Mengembalikan array yang mendefinisikan tipe data yang akan di-cast
+     * pada atribut model.
      *
-     * @return array<string, string>
+     * @return array
      */
+    //
     protected function casts(): array
     {
         return [
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    /**
+     * Mengembalikan array yang berisi nama permission yang dimiliki oleh
+     * user yang sedang login. Nama permission yang dikembalikan dalam bentuk
+     * array yang memiliki key berupa nama permission dan value nya berupa boolean.
+     *
+     * @return array
+     */
+    public function getUserPermissions()
+    {
+        // Mengambil semua permission yang dimiliki oleh user
+        return $this->getAllPermissions()->mapWithKeys(fn($permission) => [$permission['name'] => true]);
     }
 }
