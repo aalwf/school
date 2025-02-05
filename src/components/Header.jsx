@@ -33,7 +33,7 @@ const Header = () => {
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
             />
-            <span className="add-button" onClick={""}>
+            <span className="add-button" onClick={addTodo}>
                 Add
             </span>
         </div>
