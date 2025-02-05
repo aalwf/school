@@ -14,9 +14,9 @@ function App() {
         <div className="App">
             <div className="content">
                 {/* Memanggil komponen Header */}
-                <Header setRefresh={setRefresh} />{" "}
+                <Header setRefresh={setRefresh} />
                 {/* Memanggil komponen TodoList */}
-                <TodoList setRefresh={setRefresh} isRefresh={isRefresh} />{" "}
+                <TodoList setRefresh={setRefresh} isRefresh={isRefresh} />
             </div>
         </div>
     );

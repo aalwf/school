@@ -1,7 +1,7 @@
 import { useState } from "react"; // import useState
 
 // Komponen Header
-const Header = () => {
+const Header = ({ setRefresh }) => {
     // State untuk input
     const [input, setInput] = useState("");
 
@@ -18,9 +18,14 @@ const Header = () => {
             },
             body: JSON.stringify(newTodo),
         }).then(() => {
-            // ketika sukses menambah data, reset form dengan mengeset state input menjadi empty string
+            // ketika sukses menambah data, reset form dengan mengeset state title menjadi empty string
             setInput("");
-            console.log("new todo added.");
+            setRefresh(true); // mengubah state isRefresh yang ada di App.js menjadi true
+
+            // Tampilkan alert pada saat sukses
+            setTimeout(() => {
+                alert("new todo added.");
+            }, 500);
         });
     };
 
