@@ -23,6 +23,7 @@
     "dependencies": {
         "@tabler/icons-react": "^3.29.0",
         "clsx": "^2.1.1",
+        "react-select": "^5.10.0",
         "sweetalert2": "^11.15.10"
     }
 }
