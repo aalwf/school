@@ -22,3 +22,9 @@ Route::get('/', function () {
  * @method GET
  */
 Route::get('/users', [\App\Http\Controllers\UserController::class, 'index']);
+
+/**
+ * @path /posts
+ * @method GET
+ */
+Route::get('/posts', [\App\Http\Controllers\PostController::class, 'index']);
