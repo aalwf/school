@@ -49,7 +49,18 @@ class User extends Authenticatable
      */
     public function phone()
     {
-        // One to one
+        // One-to-one relationship
         return $this->hasOne(Phone::class);
+    }
+
+    /**
+     * roles
+     *
+     * @return void
+     */
+    public function roles()
+    {
+        // Many-to-many relationship
+        return $this->belongsToMany(Role::class, 'user_role');
     }
 }
