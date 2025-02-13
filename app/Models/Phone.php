@@ -8,4 +8,15 @@ use Illuminate\Database\Eloquent\Model;
 class Phone extends Model
 {
     use HasFactory;
+
+    /**
+     * user
+     *
+     * @return void
+     */
+    public function user()
+    {
+        // Inverse relationship
+        return $this->belongsTo(User::class);
+    }
 }
